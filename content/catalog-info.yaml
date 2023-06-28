@@ -1,0 +1,46 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ${{values.name}}
+  description: ${{values.description}}
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - ${{values.segment}}
+    - ${{values.product}}
+    - ${{values.functional-domain}}
+    - ${{values.integration}}
+spec:
+  type: ${{values.type-api}} 
+  owner: ${{values.owner}}
+  lifecycle: production
+  system: ${{values.system}}
+  definition: 
+    $text: /docs/openapi.yaml
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{values.name}}
+  description: ${{values.description}}
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - ${{values.technology}}
+    - ${{values.segment}}
+    - ${{values.product}}
+    - ${{values.functional-domain}}
+    - ${{values.integration}}
+spec:
+  type: ${{values.type-service}}
+  owner: ${{values.owner}}
+  lifecycle: production
+  system: ${{values.system}}
+  apiConsumedBy: 
+    - component:${{values.consumer}}
+  dependsOn:
+    - component:${{values.legacy}}
+    - resource:${{values.technology}}
+  providesApis:
+    - ${{values.name}}
+  

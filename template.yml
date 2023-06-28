@@ -1,0 +1,169 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+# some metadata about the template itself
+metadata:
+  name: template-microfuse-plus
+  title: Template MicroFuse Plus
+  description: Plantilla para microservicios en RH Fuse mejorado
+  tags:
+    - java-apache-camel
+spec:
+  owner: gobierno-ti
+  type: service
+
+  # these are the steps which are rendered in the frontend with the form input
+  parameters:
+    - title: Datos principales
+      required:
+        - name
+        - description
+        - owner
+      properties:
+        name:
+          title: Nombre
+          type: string
+          description: Nombre único del componente
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+        description:
+          title: Descripción
+          type: string
+          description: Finalidad y funcionalidad general
+        owner:
+          title: Responsable
+          type: string
+          description: Responsable
+    - title: Repositorio destino
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - dev.azure.com
+    - title: Datos de gobierno
+      required:
+        - segment
+        - product
+        - method
+        - functional-domain
+      properties:
+        segment:
+          title: Segmento
+          type: string
+          description: Segmentos de negocio
+          enum:
+          - b2b
+          - b2c
+          - convergente
+        product:
+          title: Producto
+          type: string
+          description: Asociado a tipos de productos
+          enum:
+          - fijo
+          - movil
+          - convergente
+          - productos-digitales
+          - productos-robustos-b2b
+        functional-domain:
+          title: Dominio Funcional
+          type: string
+          description: La línea de servicio esta asociado el desarrollo
+          enum:
+          - pagos
+          - recargas
+          - aprovisionamiento
+          - facturacion
+        legacy:
+          title: Legacy
+          type: string
+          description: Sistema Core con el cual se está integrando
+          ui:field: ComponentPicker
+          ui:options:
+            catalogFilter:
+              kind: Components
+
+        cell:
+          title: Cell
+          type: string
+          description: Nombre de la célula del equipo que desarrolla o evoluciona el desarrollo
+        
+        train:
+          title: Train
+          type: string
+          description: Determina el nombre del Tren del equipo que desarrolla o evoluciona el desarrollo 
+        
+        technology:
+          title: Technology
+          type: string
+          description: Tecnología en la cual esta implementado el desarrollo como Fuse, Openshift, AKS, Rancher, etc
+          
+
+        integration:
+          title: Integration
+          type: string
+          description: Desarrollo directo o reutilizado
+          enum:
+          - reuso
+          - sin-reuso
+          - reuso-aprobacion
+        channels:
+          title: Channels
+          type: string
+          description: Canales orígenes que consumen el servicio
+        method:
+          title: Metodo
+          type: string
+          description: Protocolo en el cual esta expuesto el servicio
+
+        
+  # here's the steps that are executed in series in the scaffolder backend
+  steps:
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        url: ./content
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          url: ${{ parameters.repoUrl }}
+          segment: ${{ parameters.segment}}
+          product: ${{ parameters.product}}
+          functional-domain: ${{ parameters.functional-domain}}
+          legacy: ${{ parameters.legacy}}
+          cell: ${{ parameters.cell}}
+          train: ${{ parameters.train}}
+          technology: ${{ parameters.technology}}
+          integration: ${{ parameters.integration}}
+          channels: ${{ parameters.channels}}
+          method: ${{ parameters.method}}
+   
+    - id: publish
+      name: Publish
+      action: publish:azure
+      input:
+        allowedHosts: ['dev.azure.com']
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
+  
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+        
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}

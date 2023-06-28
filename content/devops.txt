@@ -1,0 +1,61 @@
+{
+	"Projects":	[
+		{
+			"name":	"${{values.name}}",
+			"node": "java-mvn-oc-node1",
+			"technology": "Services",
+            "repositoryURL": "https://git.nh.inet/gitea/${{values.owner}}/${{values.name}}.git",
+            "mainProjectPath": "",
+            "scriptBuildTest":[
+                "mvn -v",
+                "mvn clean",
+                "mvn package -DskipTests"
+            ],
+			"scriptBuildProd":[
+                "mvn -v",
+                "mvn clean",
+                "mvn install -DskipTests"
+            ],
+            "sonarWithOSPlugin": false,
+            "sonarEnvironment": "sonarqube-interno",
+            "scriptSonar": "mvn sonar:sonar -Dsonar.projectKey=${{values.name}}",
+            "scriptTestReportPath": "",
+            "unitTestProjectPath": "",
+			"scriptUnitTest":[
+				""
+			],
+            "kiuwan": {
+				"lastDelivery": "",
+				"lastAnalysis": "https://api.kiuwan.com/deliveries/last_analysis?application=Microservicios.Colombia",
+				"baseAnalysis": "",
+                "branch": "${{values.name}}"
+			},
+            "nexus":{
+            	"instance":"",
+                "repository": "devops_releases",
+                "packageType": "app",
+                "packageExtension": "jar",
+            	"packagePath":"/target/",
+                "packageName": "${{values.name}}-$VERSION"
+            },
+			"deployType": "OCP",
+            "deployWithDocker": false,
+			"deploy":{
+				"dev":{
+					"hasEnvironment": true,
+                    "namespace": "${{values.ns}}",
+                    "uri-base": "/telefonica/NIVEL_ETOM/v1/${{values.name}}/.*",
+                    "appName": "${{values.name}}",
+                    "template": "deployment.yaml"
+				},
+				"prd":{
+					"hasEnvironment": true,
+                    "namespace": "${{values.ns}}",
+                    "uri-base": "/telefonica/NIVEL_ETOM/v1/${{values.name}}/.*",
+                    "appName": "${{values.name}}",
+                    "template": "deployment.yml"
+				}
+			}
+		}
+	]
+}
