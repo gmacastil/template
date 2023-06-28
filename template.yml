@@ -101,8 +101,11 @@ spec:
         technology:
           title: Technology
           type: string
-          description: Tecnología en la cual esta implementado el desarrollo como Fuse, Openshift, AKS, Rancher, etc
-          
+          description: Tecnología en la cual esta implementado el desarrollo
+          ui:field: TechPicker
+          ui:options:
+            allowedKinds:
+            - Resource
 
         integration:
           title: Integration
