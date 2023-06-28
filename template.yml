@@ -30,10 +30,6 @@ spec:
           title: Descripción
           type: string
           description: Finalidad y funcionalidad general
-        owner:
-          title: Responsable
-          type: string
-          description: Responsable
     - title: Repositorio destino
       required:
         - repoUrl
@@ -86,18 +82,7 @@ spec:
           ui:field: LegacyPicker
           ui:options:
             catalogFilter:
-              kind: [Component]
-
-        cell:
-          title: Cell
-          type: string
-          description: Nombre de la célula del equipo que desarrolla o evoluciona el desarrollo
-        
-        train:
-          title: Train
-          type: string
-          description: Determina el nombre del Tren del equipo que desarrolla o evoluciona el desarrollo 
-        
+              kind: Component
         technology:
           title: Technology
           type: string
@@ -105,8 +90,7 @@ spec:
           ui:field: TechPicker
           ui:options:
             catalogFilter:
-               kind: [Resource]
-
+               kind: Resource
         integration:
           title: Integration
           type: string
