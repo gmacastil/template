@@ -83,10 +83,10 @@ spec:
           title: Legacy
           type: string
           description: Sistema Core con el cual se está integrando
-          ui:field: ComponentPicker
+          ui:field: LegacyPicker
           ui:options:
-            catalogFilter:
-              kind: Component
+            allowedKinds:
+            - Component
 
         cell:
           title: Cell
