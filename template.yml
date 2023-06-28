@@ -86,7 +86,7 @@ spec:
           ui:field: ComponentPicker
           ui:options:
             catalogFilter:
-              kind: Components
+              kind: Component
 
         cell:
           title: Cell
