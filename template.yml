@@ -6,7 +6,8 @@ metadata:
   title: Template Spring Boot REST API v1.0
   description: Plantilla para microservicios en RH Fuse mejorado
   tags:
-    - java-apache-camel
+    - java
+    - springboot
 spec:
   owner: gobierno-ti
   type: service
