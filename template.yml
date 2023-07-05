@@ -2,8 +2,8 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 # some metadata about the template itself
 metadata:
-  name: template-microfuse-plus
-  title: Template MicroFuse Plus
+  name: Template Spring Boot REST API v1.0
+  title: Template Spring Boot REST API v1.0
   description: Plantilla para microservicios en RH Fuse mejorado
   tags:
     - java-apache-camel
