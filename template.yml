@@ -22,13 +22,29 @@ spec:
           title: Nombre
           type: string
           description: Nombre único del componente
-          maxLength: 8
+          maxLength: 16
           pattern: '^([a-z]*)(-[a-z]+)*$'
           ui:autofocus: true
         description:
           title: Descripción
           type: string
           description: Finalidad y funcionalidad general
+        train:
+          title: Tren
+          type: string
+          description: Tren
+          ui:field: TrenPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+        cell:
+          title: Celula
+          type: string
+          description: Celula
+          ui:field: CelulaPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
     - title: Repositorio destino
       required:
         - repoUrl
@@ -51,22 +67,6 @@ spec:
         - channels
         - method
       properties:
-        train:
-          title: Tren
-          type: string
-          description: Tren
-          ui:field: TrenPicker
-          ui:options:
-            catalogFilter:
-              kind: Group
-        cell:
-          title: Celula
-          type: string
-          description: Celula
-          ui:field: CelulaPicker
-          ui:options:
-            catalogFilter:
-              kind: Group
         segment:
           title: Segmento
           type: string
