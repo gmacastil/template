@@ -8,7 +8,7 @@ metadata:
   tags:
     - java-springboot
 spec:
-  owner: gobierno-ti
+  owner: Arquitectura
   type: service
 
   # these are the steps which are rendered in the frontend with the form input
@@ -22,9 +22,9 @@ spec:
           title: Nombre
           type: string
           description: Nombre único del componente
+          maxLength: 8
+          pattern: '^([a-z]*)(-[a-z]+)*$'
           ui:autofocus: true
-          ui:options:
-            rows: 5
         description:
           title: Descripción
           type: string
@@ -44,9 +44,29 @@ spec:
       required:
         - segment
         - product
-        - method
         - functional-domain
+        - legacy
+        - technology
+        - integration
+        - channels
+        - method
       properties:
+        train:
+          title: Tren
+          type: string
+          description: Tren
+          ui:field: TrenPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+        cell:
+          title: Celula
+          type: string
+          description: Celula
+          ui:field: CelulaPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
         segment:
           title: Segmento
           type: string
@@ -102,11 +122,17 @@ spec:
           title: Channels
           type: string
           description: Canales orígenes que consumen el servicio
+          ui:field: ChanelPicker
+          ui:options:
+            catalogFilter:
+              kind: Component  
         method:
           title: Metodo
           type: string
           description: Protocolo en el cual esta expuesto el servicio
-
+          enum:
+          - soap
+          - rest
         
   # here's the steps that are executed in series in the scaffolder backend
   steps:
