@@ -8,7 +8,7 @@ metadata:
   tags:
     - java-springboot
 spec:
-  owner: Arquitectura
+  owner: group:Arquitectura
   type: service
 
   # these are the steps which are rendered in the frontend with the form input
