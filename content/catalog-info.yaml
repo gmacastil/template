@@ -38,10 +38,10 @@ spec:
   lifecycle: production
   system: integracion-ocp
   apiConsumedBy: 
-    - component:${{values.channels}}
+    - ${{values.channels}}
   dependsOn:
-    - component:${{values.legacy}}
-    - resource:${{values.technology}}
+    - ${{values.legacy}}
+    - ${{values.technology}}
   providesApis:
     - ${{values.name}}
   
