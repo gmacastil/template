@@ -4,7 +4,7 @@
 			"name":	"${{values.name}}",
 			"node": "java-mvn-oc-node1",
 			"technology": "Services",
-            "repositoryURL": "https://git.nh.inet/gitea/${{values.owner}}/${{values.name}}.git",
+            "repositoryURL": "${{values.repoUrl}",
             "mainProjectPath": "",
             "scriptBuildTest":[
                 "mvn -v",

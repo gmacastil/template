@@ -10,7 +10,7 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <name>${{values.name}}</name>
-    <description>${{values.description}} | Repo owner: ${{values.owner}}</description>
+    <description>${{values.description}} | Repo owner: ${{values.cell}}</description>
 
     <properties>
         <java.version>1.8</java.version>

@@ -132,7 +132,9 @@ spec:
           description: Protocolo en el cual esta expuesto el servicio
           enum:
           - soap
-          - rest
+          - openapi
+          - grpc
+          - graphql
         
   # here's the steps that are executed in series in the scaffolder backend
   steps:
@@ -144,13 +146,12 @@ spec:
         values:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
-          owner: ${{ parameters.owner }}
+          cell: ${{ parameters.cell }}
           url: ${{ parameters.repoUrl }}
           segment: ${{ parameters.segment}}
           product: ${{ parameters.product}}
           functional-domain: ${{ parameters.functional-domain}}
           legacy: ${{ parameters.legacy}}
-          cell: ${{ parameters.cell}}
           train: ${{ parameters.train}}
           technology: ${{ parameters.technology}}
           integration: ${{ parameters.integration}}

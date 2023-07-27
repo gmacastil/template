@@ -11,10 +11,10 @@ metadata:
     - ${{values.functional-domain}}
     - ${{values.integration}}
 spec:
-  type: ${{values.type-api}} 
-  owner: ${{values.owner}}
+  type: ${{values.method}} 
+  owner: ${{values.cell}}
   lifecycle: production
-  system: ${{values.system}}
+  system: integracion-ocp
   definition: 
     $text: /docs/openapi.yaml
 ---
@@ -32,12 +32,12 @@ metadata:
     - ${{values.functional-domain}}
     - ${{values.integration}}
 spec:
-  type: ${{values.type-service}}
-  owner: ${{values.owner}}
+  type: microservice
+  owner: ${{values.cell}}
   lifecycle: production
-  system: ${{values.system}}
+  system: integracion-ocp
   apiConsumedBy: 
-    - component:${{values.consumer}}
+    - component:${{values.channels}}
   dependsOn:
     - component:${{values.legacy}}
     - resource:${{values.technology}}
