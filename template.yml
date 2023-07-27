@@ -44,7 +44,7 @@ spec:
       required:
         - segment
         - product
-        - functional-domain
+        - fdomain
         - legacy
         - technology
         - integration
