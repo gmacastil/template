@@ -6,7 +6,6 @@ metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
   tags:
-    - ${{values.technology}}
     - ${{values.segment}}
     - ${{values.product}}
     - ${{values.functional-domain}}
@@ -27,7 +26,6 @@ metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
   tags:
-    - ${{values.technology}}
     - ${{values.segment}}
     - ${{values.product}}
     - ${{values.functional-domain}}
