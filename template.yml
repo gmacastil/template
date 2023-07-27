@@ -147,7 +147,7 @@ spec:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
           cell: ${{ parameters.cell }}
-          url: ${{ parameters.repoUrl }}
+          repoUrl: ${{ parameters.repoUrl }}
           segment: ${{ parameters.segment}}
           product: ${{ parameters.product}}
           fdomain: ${{ parameters.fdomain}}
