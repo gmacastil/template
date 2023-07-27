@@ -152,7 +152,7 @@ spec:
           product: ${{ parameters.product}}
           functional-domain: ${{ parameters.functional-domain}}
           legacy: ${{ parameters.legacy}}
-          train: ${{ parameters.train}}
+          train: ${{ parameters.train}} #implicito en la celula
           technology: ${{ parameters.technology}}
           integration: ${{ parameters.integration}}
           channels: ${{ parameters.channels}}

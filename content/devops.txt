@@ -4,7 +4,7 @@
 			"name":	"${{values.name}}",
 			"node": "java-mvn-oc-node1",
 			"technology": "Services",
-            "repositoryURL": "${{values.repoUrl}",
+            "repositoryURL": "${{values.repoUrl}}",
             "mainProjectPath": "",
             "scriptBuildTest":[
                 "mvn -v",
