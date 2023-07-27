@@ -8,7 +8,7 @@ metadata:
   tags:
     - ${{values.segment}}
     - ${{values.product}}
-    - ${{values.functional-domain}}
+    - ${{values.fdomain}}
     - ${{values.integration}}
 spec:
   type: ${{values.method}} 
@@ -28,7 +28,7 @@ metadata:
   tags:
     - ${{values.segment}}
     - ${{values.product}}
-    - ${{values.functional-domain}}
+    - ${{values.fdomain}}
     - ${{values.integration}}
 spec:
   type: microservice

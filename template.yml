@@ -85,7 +85,7 @@ spec:
           - convergente
           - productos-digitales
           - productos-robustos-b2b
-        functional-domain:
+        fdomain:
           title: Dominio Funcional
           type: string
           description: La línea de servicio esta asociado el desarrollo
@@ -150,7 +150,7 @@ spec:
           url: ${{ parameters.repoUrl }}
           segment: ${{ parameters.segment}}
           product: ${{ parameters.product}}
-          functional-domain: ${{ parameters.functional-domain}}
+          fdomain: ${{ parameters.fdomain}}
           legacy: ${{ parameters.legacy}}
           train: ${{ parameters.train}} #implicito en la celula
           technology: ${{ parameters.technology}}
