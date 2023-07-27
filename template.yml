@@ -55,7 +55,7 @@ spec:
           title: Tren
           type: string
           description: Tren
-          ui:field: OwnerPicker
+          ui:field: EntityPicker
           ui:options:
             catalogFilter:
               kind: Group
@@ -63,7 +63,7 @@ spec:
           title: Celula
           type: string
           description: Celula
-          ui:field: OwnerPicker
+          ui:field: EntityPicker
           ui:options:
             catalogFilter:
               kind: Group
@@ -98,7 +98,7 @@ spec:
           title: Legacy
           type: string
           description: Sistema Core con el cual se está integrando
-          ui:field: OwnerPicker
+          ui:field: EntityPicker
           ui:options:
             catalogFilter:
               kind: Component
@@ -106,7 +106,7 @@ spec:
           title: Technology
           type: string
           description: Tecnología en la cual esta implementado el desarrollo
-          ui:field: OwnerPicker
+          ui:field: EntityPicker
           ui:options:
             catalogFilter:
                kind: Resource
@@ -122,7 +122,7 @@ spec:
           title: Channels
           type: string
           description: Canales orígenes que consumen el servicio
-          ui:field: OwnerPicker
+          ui:field: EntityPicker
           ui:options:
             catalogFilter:
               kind: Component  
