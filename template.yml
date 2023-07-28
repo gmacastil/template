@@ -95,7 +95,7 @@ spec:
           - aprovisionamiento
           - facturacion
         legacy:
-          title: Legacy
+          title: Consumer
           type: string
           description: Sistema Core con el cual se está integrando
           ui:field: EntityPicker
@@ -135,6 +135,7 @@ spec:
           - openapi
           - grpc
           - graphql
+          - avro
         
   # here's the steps that are executed in series in the scaffolder backend
   steps:
