@@ -173,6 +173,18 @@ spec:
       input:
         repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
+
+    - id: backstage_request
+      name: backstage request
+      action: http:backstage:request
+      input:
+        method: 'POST'
+        path: '/proxy/demo'
+        headers:
+          content-type: 'application/json'
+        body:
+          urlRepository: ${{ parameters.urlRepository }}
+          developmentLanguage: "java-fuse"
         
   output:
     links:
