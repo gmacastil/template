@@ -1,10 +1,9 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
-# some metadata about the template itself
 metadata:
-  name: template-java-spring-boot-rest-api-v1.0
+  name: template-java-spring-boot-rest-api
   title: Template Spring Boot REST API v1.0
-  description: Plantilla para microservicios en RH Fuse mejorado
+  description: Plantilla para microservicios SB3.0
   tags:
     - java-springboot
 spec:
