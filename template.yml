@@ -40,102 +40,9 @@ spec:
           ui:options:
             allowedHosts:
               - dev.azure.com
-    - title: Datos de gobierno
-      required:
-        - segment
-        - product
-        - fdomain
-        - legacy
-        - technology
-        - integration
-        - channels
-        - method
-      properties:
-        train:
-          title: Tren
-          type: string
-          description: Tren
-          ui:field: EntityPicker
-          ui:options:
-            catalogFilter:
-              kind: Group
-        cell:
-          title: Celula
-          type: string
-          description: Celula
-          ui:field: EntityPicker
-          ui:options:
-            catalogFilter:
-              kind: Group
-        segment:
-          title: Segmento
-          type: string
-          description: Segmentos de negocio
-          enum:
-          - b2b
-          - b2c
-          - convergente
-        product:
-          title: Producto
-          type: string
-          description: Asociado a tipos de productos
-          enum:
-          - fijo
-          - movil
-          - convergente
-          - productos-digitales
-          - productos-robustos-b2b
-        fdomain:
-          title: Dominio Funcional
-          type: string
-          description: La línea de servicio esta asociado el desarrollo
-          enum:
-          - pagos
-          - recargas
-          - aprovisionamiento
-          - facturacion
-        legacy:
-          title: Consumer
-          type: string
-          description: Sistema Core con el cual se está integrando
-          ui:field: EntityPicker
-          ui:options:
-            catalogFilter:
-              kind: Component
-        technology:
-          title: Technology
-          type: string
-          description: Tecnología en la cual esta implementado el desarrollo
-          ui:field: EntityPicker
-          ui:options:
-            catalogFilter:
-               kind: Resource
-        integration:
-          title: Integration
-          type: string
-          description: Desarrollo directo o reutilizado
-          enum:
-          - reuso
-          - sin-reuso
-          - reuso-aprobacion
-        channels:
-          title: Channels
-          type: string
-          description: Canales orígenes que consumen el servicio
-          ui:field: EntityPicker
-          ui:options:
-            catalogFilter:
-              kind: Component  
-        method:
-          title: Metodo
-          type: string
-          description: Protocolo en el cual esta expuesto el servicio
-          enum:
-          - soap
-          - openapi
-          - grpc
-          - graphql
-          - avro
+              - github.com
+              - gitlab.com
+    
         
   # here's the steps that are executed in series in the scaffolder backend
   steps:
@@ -147,18 +54,7 @@ spec:
         values:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
-          cell: ${{ parameters.cell }}
-          repoUrl: ${{ parameters.repoUrl }}
-          segment: ${{ parameters.segment}}
-          product: ${{ parameters.product}}
-          fdomain: ${{ parameters.fdomain}}
-          legacy: ${{ parameters.legacy}}
-          train: ${{ parameters.train}} #implicito en la celula
-          technology: ${{ parameters.technology}}
-          integration: ${{ parameters.integration}}
-          channels: ${{ parameters.channels}}
-          method: ${{ parameters.method}}
-   
+          
     - id: publish
       name: Publish
       action: publish:azure
