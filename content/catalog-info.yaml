@@ -10,13 +10,16 @@ metadata:
     - ${{values.product}}
     - ${{values.fdomain}}
     - ${{values.integration}}
+    - java-apache-camel
 spec:
-  type: ${{values.method}} 
+  type: ${{values.method}}
   owner: ${{values.cell}}
   lifecycle: production
   system: integracion-ocp
   definition: 
     $text: /docs/openapi.yaml
+  apiConsumedBy: 
+    - ${{values.channels}}
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -30,16 +33,14 @@ metadata:
     - ${{values.product}}
     - ${{values.fdomain}}
     - ${{values.integration}}
+    - java-apache-camel
 spec:
-  type: microservice
+  type: service
   owner: ${{values.cell}}
   lifecycle: production
   system: integracion-ocp
-  apiConsumedBy: 
-    - ${{values.channels}}
   dependsOn:
     - ${{values.legacy}}
-    - ${{values.technology}}
   providesApis:
     - ${{values.name}}
   

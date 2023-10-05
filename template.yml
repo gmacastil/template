@@ -1,36 +1,26 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
+# some metadata about the template itself
 metadata:
-  name: template-java-spring-boot-rest-api
-  title: Template Spring Boot REST API v1.0
-  description: Plantilla para microservicios SB3.0
+  name: template-java-apache-camel-fuse-api-v1.0
+  title: Template Camel Fuse API v1.0
+  description: Plantilla para microservicios en RH Fuse mejorado
   tags:
-    - java-springboot
+    - java-apache-camel
 spec:
   owner: group:Arquitectura
   type: service
 
   # these are the steps which are rendered in the frontend with the form input
   parameters:
-    - title: Datos principales
-      required:
-        - name
-        - description
-      properties:
-        name:
-          title: Nombre
-          type: string
-          description: Nombre único del componente
-          maxLength: 16
-          pattern: '^([a-z]*)(-[a-z]+)*$'
-          ui:autofocus: true
-        description:
-          title: Descripción
-          type: string
-          description: Finalidad y funcionalidad general
-    - title: Repositorio destino
+    - title: Datos Repositorio
       required:
         - repoUrl
+        - name
+        - description
+        - namespace
+        - organization
+        - projetcc
       properties:
         repoUrl:
           title: Repository Location
@@ -39,10 +29,186 @@ spec:
           ui:options:
             allowedHosts:
               - dev.azure.com
-              - github.com
-              - gitlab.com
-    
-        
+        name:
+          title: Repositorio
+          type: string
+          description: Nombre único del repositorio
+        description:
+          title: Descripción
+          type: string
+          description: Finalidad y/o funcionalidad del componente
+        namespace:
+          title: Namespace
+          type: string
+          description: Nombre del espacio asignado al componente
+          enum:
+          - V1
+          - V2
+          - V3
+        organization:
+          title: Organización
+          type: string
+          description: Organización propietaria del repositorio
+          enum:
+          - CelulaTamesys
+          - CelulaAtlantisTelefonica
+          - CelulaYoiOwari
+          - CelulaSequoia
+          - CelulaRenew
+          - CelulaSoporteCasaCliente
+          - CelulaAIOPS
+          - CelulaMeraki
+          - CelulaRadix
+          - CelulaInnovacionExperienciaClientesB2B
+          - CelulaDigitalizacionDeProcesos
+          - CelulaAxia
+          - CelulaVentasDigitalesPrepago
+          - CelulaBotana
+          - CelulaCoeDatayAnalitica
+          - CelulaKodopco
+          - CelulaBillingAndPayment
+          - CelulaAIOPSredes
+        projetcc:
+          title: Proyecto
+          type: string
+          description: Proyecto al que pertenece el repositorio
+          enum:
+          - V1
+          - V2
+          - V3
+    - title: Datos Gobierno
+      required:
+        - channels
+        - integration
+        - segment
+        - product
+        - fdomain
+        - tservice
+        - tad
+        - ncad
+        - nrad
+        - dplatform
+      properties:
+        tservice:
+          title: Tipo Servicio
+          type: string
+          description: Tipo de servicio desarrollado
+          enum:
+          - Microservicio
+          - Microservicio CronJob
+          - Orquestador
+          - Orquestador CronJob
+          - BFF (Back for Frontend)
+          - Frontend
+        channels:
+          title: Consumidor
+          type: string
+          description: Componente(s) de origen que consume(n) el servicio
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: Component 
+        tad:
+          title: Tipo Apuntamiento / Destino
+          type: string
+          description: Tipo Apuntamiento / Destino con el que se está integrando el desarrollo
+          enum:   
+          - Componente
+          - Recurso
+          - Mixto
+        ncad:
+          title: Nombre Componente Apuntamiento / Destino
+          type: string
+          description: Nombre Componente con el que se está integrando el desarrollo
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: Component
+        nrad:
+          title: Nombre Recurso Apuntamiento / Destino   
+          type: string
+          description: Nombre Recurso con el que se está integrando el desarrollo   
+        dplatform:
+          title: Plataforma Despliegue
+          type: string
+          description: Plataforma donde se desplegara el servicio
+          enum:
+          - OCP
+          - AKS
+          - Rancher
+        integration:
+          title: Integración
+          type: string
+          description: Servicio se puede reusar o es propietario
+          enum:
+          - Reuso
+          - Sin reuso
+          - Reuso con aprobacion   
+        segment:
+          title: Segmento
+          type: string
+          description: Segmento de negocio asociado el servicio
+          enum:
+          - B2B
+          - B2C
+          - Convergente      
+        product:
+          title: Producto
+          type: string
+          description: Producto asociado al servicio
+          enum:
+          - Fijo
+          - Movil
+          - Convergente
+          - Productos Digitales
+          - Productos Robustos (B2B)
+        fdomain:
+          title: Dominio Funcional
+          type: string
+          description: Linea de servicio asociada al componente
+          enum:
+          - Pagos
+          - Recargas
+          - Aprovisionamiento
+          - Facturacion  
+    - title: Datos Seguridad
+      required:
+        - criticality
+        - cdli
+        - cnormative
+        - vdi
+      properties:
+        criticality:
+          title: Criticidad
+          type: string
+          description: Criticidad del activo
+          enum:
+          - Critico
+          - No Critico
+        cdli:
+          title: Clasificación de la Información
+          type: string 
+          description: Clasificación de la información
+          enum:
+          - Uso Interno 
+          - Publico 
+          - Restringido 
+          - Reservado
+        cnormative:
+          title: Cumplimiento Normativo
+          type: string
+          description: Cumplimiento normativo
+          enum:
+          - Telefonica (Por Defecto)
+          - SOX
+          - PCI DSS
+        vdi:
+         title: Visibilidad Desde Internet
+         type: string
+         description: Visibilidad desde internet
+         enum:
+         - Si
+         - No
   # here's the steps that are executed in series in the scaffolder backend
   steps:
     - id: fetch-base
@@ -52,29 +218,55 @@ spec:
         url: ./content
         values:
           name: ${{ parameters.name }}
-          description: ${{ parameters.description }}
-          
+          description: ${{parameters.description }}
+          cell: ${{ parameters.cell }}
+          repoUrl: ${{ parameters.repoUrl }}
+          segment: ${{ parameters.segment }}
+          product: ${{ parameters.product }}
+          fdomain: ${{ parameters.fdomain }}
+          legacy: ${{ parameters.legacy }}
+          integration: ${{ parameters.integration }}
+          channels: ${{ parameters.channels }}
+          method: ${{ parameters.method }}
+   
     - id: publish
       name: Publish
       action: publish:azure
       input:
         allowedHosts: ['dev.azure.com']
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        description: This is ${{parameters.name}}
+        repoUrl: ${{parameters.repoUrl}}
   
     - id: register
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        repoContentsUrl: ${{steps['publish'].output.repoContentsUrl}}
         catalogInfoPath: '/catalog-info.yaml'
-
-
+   
+    - id: backstage_request
+      name: kiuwan
+      action: http:backstage:request
+      input:
+        method: 'POST'
+        path: '/proxy/secure-development-reporter'
+        headers:
+          content-type: 'application/json'
+        body:
+          urlRepository: ${{ parameters.repoUrl }}
+          agileTrain: ${{ parameters.train }}
+          agileCell: ${{ parameters.cell }}
+          projectName: ${{ parameters.name }}
+          microserviceName: ${{ parameters.name }}
+          branch: "test"
+          internetExposure: ${{ parameters.expose }}
+          developmentLanguaje: "java-fuse"
         
   output:
     links:
       - title: Repository
-        url: ${{ steps['publish'].output.remoteUrl }}
+        url: ${{steps['publish'].output.remoteUrl}}
       - title: Open in catalog
         icon: catalog
-        entityRef: ${{ steps['register'].output.entityRef }}
+        entityRef: ${{steps['register'].output.entityRef}}
+

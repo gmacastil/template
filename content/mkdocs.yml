@@ -3,7 +3,7 @@ site_name: '${{values.name}}'
 nav:
   - Home: index.md
   - Description: 01.-Descripcion-General-de-la-Integracion.md
-  - DF-DT: 02.-DF_DT-Operacion%3A-%5Bnombre%5D.md
+  - DF-DT: 02.-DF_DT-Operacion-nombre.md
 
 plugins:
   - techdocs-core

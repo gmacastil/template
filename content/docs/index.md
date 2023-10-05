@@ -5,4 +5,3 @@ La siguiente tabla proporciona información sobre los cambios realizados en cada
 | Versión | Fecha | Autor | Revisado por | Estado | Comentarios |
 | :-----: | :---: | :---- | :----------- | :----: | :---------- |
 |         |       |       |              |        |             |
-|         |       |       |              |        |             |
