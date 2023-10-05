@@ -29,6 +29,8 @@ spec:
           ui:options:
             allowedHosts:
               - dev.azure.com
+              - github.com    
+               
         name:
           title: Repositorio
           type: string
