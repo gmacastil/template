@@ -6,11 +6,11 @@ metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
   tags:
-    - ${{values.segment}}
-    - ${{values.product}}
-    - ${{values.fdomain}}
-    - ${{values.integration}}
-    - java-apache-camel
+    - segmento:${{values.segment}}
+    - producto:${{values.product}}
+    - dom-fun:${{values.fdomain}}
+    - integracion:${{values.integration}}
+    - lenguaje:java-apache-camel
 spec:
   type: ${{values.method}}
   owner: ${{values.cell}}
@@ -18,8 +18,6 @@ spec:
   system: integracion-ocp
   definition: 
     $text: /docs/openapi.yaml
-  apiConsumedBy: 
-    - ${{values.channels}}
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -29,11 +27,11 @@ metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
   tags:
-    - ${{values.segment}}
-    - ${{values.product}}
-    - ${{values.fdomain}}
-    - ${{values.integration}}
-    - java-apache-camel
+    - segmento:${{values.segment}}
+    - producto:${{values.product}}
+    - dom-fun:${{values.fdomain}}
+    - integracion:${{values.integration}}
+    - lenguaje:java-apache-camel
 spec:
   type: service
   owner: ${{values.cell}}
@@ -43,4 +41,6 @@ spec:
     - ${{values.legacy}}
   providesApis:
     - ${{values.name}}
+  apiConsumedBy: 
+    - ${{values.channels}}
   
