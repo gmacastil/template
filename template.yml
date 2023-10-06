@@ -1,8 +1,8 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: template-java-apache-camel-fuse-api-v1.1
-  title: Template Camel Fuse API v1.1
+  name: template-java-apache-camel-fuse-api-v1.2
+  title: Template Camel Fuse API v1.2
   description: Plantilla para microservicios en RH Fuse mejorado
   tags:
     - java-fuse
