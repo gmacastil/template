@@ -15,7 +15,7 @@ spec:
   type: ${{values.method}}
   owner: ${{values.cell}}
   lifecycle: production
-  system: integracion-ocp
+  system: ServiciosDeIntegracionOpenShift
   definition: 
     $text: /docs/openapi.yaml
 ---
@@ -36,7 +36,7 @@ spec:
   type: service
   owner: ${{values.cell}}
   lifecycle: production
-  system: integracion-ocp
+  system: ServiciosDeIntegracionOpenShift
   dependsOn:
     - ${{values.legacy}}
   providesApis:
