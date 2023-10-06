@@ -6,11 +6,11 @@ metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
   tags:
-    - segmento:${{values.segment}}
-    - producto:${{values.product}}
-    - dom-fun:${{values.fdomain}}
-    - integracion:${{values.integration}}
-    - lenguaje:java-apache-camel
+    - segmento--${{values.segment}}
+    - producto--${{values.product}}
+    - domfun--${{values.fdomain}}
+    - integracion--${{values.integration}}
+    - lenguaje--java-apache-camel
 spec:
   type: ${{values.method}}
   owner: ${{values.cell}}
@@ -27,11 +27,11 @@ metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
   tags:
-    - segmento:${{values.segment}}
-    - producto:${{values.product}}
-    - dom-fun:${{values.fdomain}}
-    - integracion:${{values.integration}}
-    - lenguaje:java-apache-camel
+    - segmento--${{values.segment}}
+    - producto--${{values.product}}
+    - domfun--${{values.fdomain}}
+    - integracion--${{values.integration}}
+    - lenguaje--java-apache-camel
 spec:
   type: service
   owner: ${{values.cell}}
