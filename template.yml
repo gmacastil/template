@@ -69,6 +69,7 @@ spec:
           ui:options:
             allowedHosts:
               - dev.azure.com
+              - github.com
           
     - title: Datos Gobierno
       required:
