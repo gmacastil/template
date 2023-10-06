@@ -1,83 +1,73 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
-# some metadata about the template itself
 metadata:
-  name: template-java-apache-camel-fuse-api-v1.0
-  title: Template Camel Fuse API v1.0
+  name: template-java-apache-camel-fuse-api-v1.1
+  title: Template Camel Fuse API v1.1
   description: Plantilla para microservicios en RH Fuse mejorado
   tags:
-    - java-apache-camel
+    - java-fuse
 spec:
   owner: group:Arquitectura
   type: service
 
-  # these are the steps which are rendered in the frontend with the form input
   parameters:
     - title: Datos Repositorio
       required:
-        - repoUrl
         - name
         - description
         - namespace
         - organization
         - projetcc
       properties:
-        repoUrl:
+        name:
+          title: Nombre Repositorio
+          type: string
+          description: Nombre único del repositorio
+          
+        description:
+          title: Descripción
+          type: string
+          description: Finalidad y/o funcionalidad del componente
+          
+        namespace:
+          title: Namespace
+          type: string
+          description: Nombre del espacio asignado al componente
+          enum:
+          - namespace_1
+          - namespace_2
+          - namespace_3
+          
+        organization:
+          title: Organización
+          type: string
+          description: Organización propietaria del repositorio
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+         
+        projetcc:
+          title: Proyecto
+          type: string
+          description: Proyecto al que pertenece el repositorio
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+              
+    - title: Datos Azure DevOps
+      required:
+      - repoUrl
+      properties:
+       repoUrl:
           title: Repository Location
           type: string
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
               - dev.azure.com
-              - github.com    
-               
-        name:
-          title: Repositorio
-          type: string
-          description: Nombre único del repositorio
-        description:
-          title: Descripción
-          type: string
-          description: Finalidad y/o funcionalidad del componente
-        namespace:
-          title: Namespace
-          type: string
-          description: Nombre del espacio asignado al componente
-          enum:
-          - V1
-          - V2
-          - V3
-        organization:
-          title: Organización
-          type: string
-          description: Organización propietaria del repositorio
-          enum:
-          - CelulaTamesys
-          - CelulaAtlantisTelefonica
-          - CelulaYoiOwari
-          - CelulaSequoia
-          - CelulaRenew
-          - CelulaSoporteCasaCliente
-          - CelulaAIOPS
-          - CelulaMeraki
-          - CelulaRadix
-          - CelulaInnovacionExperienciaClientesB2B
-          - CelulaDigitalizacionDeProcesos
-          - CelulaAxia
-          - CelulaVentasDigitalesPrepago
-          - CelulaBotana
-          - CelulaCoeDatayAnalitica
-          - CelulaKodopco
-          - CelulaBillingAndPayment
-          - CelulaAIOPSredes
-        projetcc:
-          title: Proyecto
-          type: string
-          description: Proyecto al que pertenece el repositorio
-          enum:
-          - V1
-          - V2
-          - V3
+          
     - title: Datos Gobierno
       required:
         - channels
@@ -118,6 +108,7 @@ spec:
           - Componente
           - Recurso
           - Mixto
+          
         ncad:
           title: Nombre Componente Apuntamiento / Destino
           type: string
@@ -126,18 +117,21 @@ spec:
           ui:options:
             catalogFilter:
               kind: Component
+              
         nrad:
           title: Nombre Recurso Apuntamiento / Destino   
           type: string
-          description: Nombre Recurso con el que se está integrando el desarrollo   
+          description: Nombre Recurso con el que se está integrando el desarrollo
+          
         dplatform:
           title: Plataforma Despliegue
           type: string
           description: Plataforma donde se desplegara el servicio
-          enum:
-          - OCP
-          - AKS
-          - Rancher
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: Resource
+          
         integration:
           title: Integración
           type: string
@@ -145,7 +139,8 @@ spec:
           enum:
           - Reuso
           - Sin reuso
-          - Reuso con aprobacion   
+          - Reuso con aprobacion
+          
         segment:
           title: Segmento
           type: string
@@ -153,7 +148,8 @@ spec:
           enum:
           - B2B
           - B2C
-          - Convergente      
+          - Convergente
+          
         product:
           title: Producto
           type: string
@@ -164,6 +160,7 @@ spec:
           - Convergente
           - Productos Digitales
           - Productos Robustos (B2B)
+          
         fdomain:
           title: Dominio Funcional
           type: string
@@ -172,7 +169,8 @@ spec:
           - Pagos
           - Recargas
           - Aprovisionamiento
-          - Facturacion  
+          - Facturacion
+          
     - title: Datos Seguridad
       required:
         - criticality
@@ -187,6 +185,7 @@ spec:
           enum:
           - Critico
           - No Critico
+          
         cdli:
           title: Clasificación de la Información
           type: string 
@@ -196,6 +195,7 @@ spec:
           - Publico 
           - Restringido 
           - Reservado
+          
         cnormative:
           title: Cumplimiento Normativo
           type: string
@@ -204,6 +204,7 @@ spec:
           - Telefonica (Por Defecto)
           - SOX
           - PCI DSS
+          
         vdi:
          title: Visibilidad Desde Internet
          type: string
@@ -211,7 +212,8 @@ spec:
          enum:
          - Si
          - No
-  # here's the steps that are executed in series in the scaffolder backend
+         
+
   steps:
     - id: fetch-base
       name: Fetch Base
