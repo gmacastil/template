@@ -59,8 +59,6 @@ spec:
             catalogFilter:
               kind: Group
               spec.type: celula
-              spec.parent: ${{ parameters.tren }}
-
               
     - title: Datos Azure DevOps
       required:
