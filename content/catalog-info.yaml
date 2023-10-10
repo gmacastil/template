@@ -6,18 +6,19 @@ metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
   tags:
-    - segmento--${{values.segment}}
-    - producto--${{values.product}}
-    - domfun--${{values.fdomain}}
-    - integracion--${{values.integration}}
-    - lenguaje--java-apache-camel
+    - segmento-${{values.segment}}
+    - producto-${{values.product}}
+    - dom-funcional-${{values.fdomain}}
+    - integration-${{values.integration}}
+    - lenguaje-java-apache-camel
 spec:
-  type: ${{values.method}}
-  owner: ${{values.cell}}
+  type: openapi
+  owner: ${{values.organization}}
   lifecycle: production
-  system: ServiciosDeIntegracionOpenShift
+  system: PlataformaDeContenedores
   definition: 
     $text: /docs/openapi.yaml
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -27,20 +28,21 @@ metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
   tags:
-    - segmento--${{values.segment}}
-    - producto--${{values.product}}
-    - domfun--${{values.fdomain}}
-    - integracion--${{values.integration}}
-    - lenguaje--java-apache-camel
+    - segmento:${{values.segment}}
+    - producto:${{values.product}}
+    - dom-funcional:${{values.fdomain}}
+    - integration:${{values.integration}}
+    - lenguaje:java-apache-camel
 spec:
   type: service
-  owner: ${{values.cell}}
+  owner: ${{values.organization}}
   lifecycle: production
-  system: ServiciosDeIntegracionOpenShift
+  system: PlataformaDeContenedores
   dependsOn:
-    - ${{values.legacy}}
+    - ${{values.platform}}
+    - ${{values.destination}}
   providesApis:
     - ${{values.name}}
   apiConsumedBy: 
-    - ${{values.channels}}
-  
+    - ${{values.consumer}}
+
