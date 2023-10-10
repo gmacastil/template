@@ -60,19 +60,6 @@ spec:
               kind: Group
               spec.type: celula
               
-    - title: Datos Azure DevOps
-      required:
-      - repoUrl
-      properties:
-       repoUrl:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - dev.azure.com
-              - github.com
-          
     - title: Datos Gobierno
       required:
         - channels
@@ -229,7 +216,7 @@ spec:
           name: ${{ parameters.name }}
           description: ${{parameters.description }}
           cell: ${{ parameters.cell }}
-          repoUrl: ${{ parameters.repoUrl }}
+          repoUrl: https://dev.azure.com?owner=${{parameters.project}}&repo=${{parameters.name}}&organization=${{parameters.organization}}
           segment: ${{ parameters.segment }}
           product: ${{ parameters.product }}
           fdomain: ${{ parameters.fdomain }}
@@ -244,7 +231,7 @@ spec:
       input:
         allowedHosts: ['dev.azure.com']
         description: This is ${{parameters.name}}
-        repoUrl: ${{parameters.repoUrl}}
+        repoUrl: https://dev.azure.com?owner=${{parameters.project}}&repo=${{parameters.name}}&organization=${{parameters.organization}}
   
     - id: register
       name: Register
@@ -262,14 +249,14 @@ spec:
         headers:
           content-type: 'application/json'
         body:
-          urlRepository: ${{ parameters.repoUrl }}
+          urlRepository: ${{steps['publish'].output.remoteUrl}}
           agileTrain: ${{ parameters.train }}
           agileCell: ${{ parameters.cell }}
           projectName: ${{ parameters.name }}
           microserviceName: ${{ parameters.name }}
-          branch: "test"
+          branch: test
           internetExposure: ${{ parameters.expose }}
-          developmentLanguaje: "java-fuse"
+          developmentLanguaje: java-fuse
         
   output:
     links:
