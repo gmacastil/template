@@ -207,7 +207,24 @@ spec:
       input:
         repoContentsUrl: ${{steps['publish'].output.repoContentsUrl}}
         catalogInfoPath: '/catalog-info.yaml'
-   
+
+    - id: backstage_request
+      name: kiuwan
+      action: http:backstage:request
+      input:
+        method: 'POST'
+        path: '/proxy/secure-development-reporter'
+        headers:
+          content-type: 'application/json'
+        body:
+          urlRepository: ${{steps['publish'].output.repoContentsUrl}}
+          agileTrain: ${{ parameters.train }}
+          agileCell: ${{ parameters.organization }}
+          projectName: ${{ parameters.name }}
+          microserviceName: ${{ parameters.name }}
+          branch: "test"
+          internetExposure: ${{ parameters.internet }}
+          developmentLanguaje: "java-fuse"    
            
   output:
     links:
